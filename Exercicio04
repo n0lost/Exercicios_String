@@ -1,0 +1,49 @@
+//Gabriel Afonso dos Santos - CB3026167
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <cctype>
+
+using namespace std;
+
+string transformaCitacao(string nome) {
+    // Separar o nome em palavras
+    vector<string> palavras;
+    stringstream ss(nome);
+    string palavra;
+    while (ss >> palavra) {
+        palavras.push_back(palavra);
+    }
+
+    // Obter as iniciais e o último sobrenome
+    string citação = "";
+    for (int i = 0; i < palavras.size() - 1; ++i) {
+        citação += toupper(palavras[i][0]);
+        citação += ". ";
+    }
+    citação += toupper(palavras.back()[0]);
+    citação += toupper(palavras.back()[1]);
+    citação += ". ";
+
+    return citação;
+}
+
+int main() {
+    ifstream arquivo("nomes.txt");
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo." << endl;
+        return 1;
+    }
+
+    string linha;
+    while (getline(arquivo, linha)) {
+        cout << transformaCitacao(linha) << linha << endl;
+    }
+
+    arquivo.close();
+
+    return 0;
+}
