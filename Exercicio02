@@ -7,10 +7,9 @@
 using namespace std;
 
 bool verificaPalindromo(string palavra) {
-    // Remover espaços da palavra
+
     palavra.erase(remove_if(palavra.begin(), palavra.end(), ::isspace), palavra.end());
 
-    // Verificar se a palavra é um palíndromo
     int tamanho = palavra.length();
     for (int i = 0; i < tamanho / 2; ++i) {
         if (tolower(palavra[i]) != tolower(palavra[tamanho - 1 - i])) {
