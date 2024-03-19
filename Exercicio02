@@ -1,0 +1,35 @@
+// Gabriel Afonso dos Santos - CB3026167
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+bool verificaPalindromo(string palavra) {
+    // Remover espaços da palavra
+    palavra.erase(remove_if(palavra.begin(), palavra.end(), ::isspace), palavra.end());
+
+    // Verificar se a palavra é um palíndromo
+    int tamanho = palavra.length();
+    for (int i = 0; i < tamanho / 2; ++i) {
+        if (tolower(palavra[i]) != tolower(palavra[tamanho - 1 - i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    string mensagem;
+    cout << "Digite uma mensagem: ";
+    getline(cin, mensagem);
+
+    if (verificaPalindromo(mensagem)) {
+        cout << "A mensagem e um palindromo." << endl;
+    } else {
+        cout << "A mensagem nao e um palindromo." << endl;
+    }
+
+    return 0;
+}
